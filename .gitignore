@@ -1,0 +1,41 @@
+# Node modules (frontend & backend)
+**/node_modules/
+
+# Logs
+**/*.log
+logs/
+
+# Environment variables
+**/.env
+**/.env.*
+
+# Build outputs
+**/dist/
+**/build/
+**/.next/
+**/.turbo/
+**/.vite/
+
+# Vite
+**/.vite/
+
+# TypeScript
+**/*.tsbuildinfo
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE/editor config
+.vscode/
+.idea/
+
+# MongoDB (local dumps or dev data)
+**/dump/
+**/*.local.db
+**/*.realm
+**/*.sqlite
+
+# Coverage/test output
+coverage/
+.nyc_output/
