@@ -39,7 +39,10 @@ const UserSchema:Schema<IUser> = new Schema({
             return !this.googleAuth;
         }
     },
-    googleAuth: { type: Boolean, default: false },
+    googleAuth: { 
+        type: Boolean, 
+        default: false 
+    },
 
 })
 

@@ -28,7 +28,7 @@ export default async function googleOauthCallback(req: Request, res: Response){
 
        const googleUser = await getUserDetails(oAuth2Client.credentials.access_token as string);
    
-       const { email, name, picture } = googleUser;
+       const { email, name } = googleUser;
 
        const fullName = name || ""; 
        const nameParts = fullName.trim().split(" ");

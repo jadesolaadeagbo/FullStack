@@ -89,7 +89,7 @@ const UserProfile = () => {
                 <p className='text-3xl text-blue-600 font-bold'>{firstName} {lastName}</p>
                 <p className='text-xl'>{phone}</p>
               </span>
-              <p className='pt-3 pb-8 text-gray-600'>{email}</p>
+              <p className='pt-3 pb-8 text-gray-600 text-center'>{email}</p>
             </div>
         }
 

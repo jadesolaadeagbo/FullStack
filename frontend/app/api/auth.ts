@@ -1,5 +1,6 @@
-import BASE_URL from "./index";
 import type { IForm, LoginData, forgotPasswordData, verifyCodeData, resetPasswordData, updateUserData } from '../types';
+
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 type SignupData = IForm;
 import { useAuthStore } from "~/store/authStore";
