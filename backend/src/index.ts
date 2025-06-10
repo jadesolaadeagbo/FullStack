@@ -4,6 +4,7 @@ import cors from "cors"
 import { connection, closeConnection } from "./utils/mongoConnection";
 import authentication from "./router/authentication"
 import googleAuth from "./router/googleAuth"
+import user from "./router/user"
 import MongoStore from "connect-mongo";
 import session from "express-session"
 
@@ -41,6 +42,7 @@ app.use(session({
 
 app.use("/auth", authentication)
 app.use("/auth/google", googleAuth)
+app.use("/", user)
 
 
 const server = app.listen(PORT, () => {

@@ -8,6 +8,7 @@ export interface IUser extends Document{
     phone: string;
     password: string;
     googleAuth: boolean;
+    
 }
 
 const UserSchema:Schema<IUser> = new Schema({

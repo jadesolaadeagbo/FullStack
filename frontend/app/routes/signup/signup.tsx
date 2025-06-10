@@ -8,6 +8,7 @@ import { googleLogin, signup } from '~/api/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import type { IForm, IFormErrors } from '../../types';
+import { useAuthStore } from '~/store/authStore';
 
 
 const Signup = () => {
@@ -21,6 +22,7 @@ const Signup = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [terms, setTerms] = useState(false);
+  const [loading, setLoading] = useState(false)
 
 
   const [formData, setFormData] = useState<IForm>({
@@ -113,14 +115,24 @@ const Signup = () => {
   };
   
 
-  const handleGoogleSignup = async() => {
+  const handleGoogleSignup = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
     try {
-    await googleLogin();
-    } catch (error) {
-      
+      setLoading(true);
+      await googleLogin();
+
+      await useAuthStore.getState().fetchUser(); 
+
+    } catch (error: any) {
+
+      console.error("Google login error:", error);
+      toast.error("Something went wrong with Google login.");
+
+    }  finally{
+        setLoading(false);
     }
-  }
-  
+  };
 
   return (
     <div className='px-32 py-10 h-screen'>

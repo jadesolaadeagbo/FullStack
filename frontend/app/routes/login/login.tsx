@@ -60,18 +60,20 @@ const Login = () => {
 
   const handleGoogleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try {
-    setLoading(true);
 
+    try {
+
+      setLoading(true);
       await googleLogin();
       await useAuthStore.getState().fetchUser(); 
-      // toast.success("Logged in with Google!");
+
     } catch (error: any) {
+
       console.error("Google login error:", error);
       toast.error("Something went wrong with Google login.");
+
     }  finally{
         setLoading(false);
-
     }
   };
 

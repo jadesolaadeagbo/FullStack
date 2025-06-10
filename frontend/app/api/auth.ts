@@ -1,7 +1,8 @@
 import BASE_URL from "./index";
-import type { IForm, LoginData, forgotPasswordData, verifyCodeData, resetPasswordData } from '../types';
+import type { IForm, LoginData, forgotPasswordData, verifyCodeData, resetPasswordData, updateUserData } from '../types';
 
 type SignupData = IForm;
+import { useAuthStore } from "~/store/authStore";
 
 export const signup = async (formData: SignupData) => {
   const response = await fetch(`${BASE_URL}/auth/signup`, {
@@ -149,3 +150,24 @@ export const forgotPassword = async(formData: forgotPasswordData) =>{
       return data;
     
       }
+
+      export const updateUserProfile = async(formData: updateUserData) =>{
+
+        const response = await fetch(`${BASE_URL}/user/edit`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData),
+            credentials: "include"
+        })
+    
+        const data = await response.json();
+    
+        if (!response.ok) {
+            throw new Error(data.message || "Failed to update user info");
+        }
+    
+        return data;
+    
+        }

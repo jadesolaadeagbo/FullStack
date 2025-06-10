@@ -49,3 +49,9 @@ export interface forgotPasswordData {
     code: string;
     newPassword: string;
   };
+
+  export interface updateUserData {
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+  }
