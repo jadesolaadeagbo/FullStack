@@ -3,7 +3,7 @@ import { OAuth2Client } from "google-auth-library";
 
 export default async function handleRequest(req: Request, res: Response){
     try {
-       res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+       res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL!);
        res.header("Referral-Policy", "no-referral-when-downgrade");
 
        const redirectUrl = "http://localhost:8000/auth/google/callback";
