@@ -42,10 +42,11 @@ app.use(session({
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24,
-        sameSite: "lax"
+        sameSite: "none"
     }
 }))
 
+// app.set("trust proxy", 1); 
 
 
 app.use("/auth", authentication)
