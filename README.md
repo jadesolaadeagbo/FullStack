@@ -3,7 +3,7 @@
 A fullstack authentication application with:
 
 - 🔐 Google OAuth login
-- 🔐 Session-based auth with secure cookies
+- 🍪 Session-based auth with secure cookies
 - 🧑 User profile editing
 - 💻 Frontend: React + Vite + Zustand
 - ⚙️ Backend: Express + MongoDB + Mongoose
@@ -13,8 +13,8 @@ A fullstack authentication application with:
 ## 📁 Project Structure
 
 my-app/
-├── frontend/ # Vite + React (client)
-├── backend/ # Express + MongoDB (API server)
-├── .gitignore
-└── README.md
+├── frontend/ # Vite + React (client)                                    
+├── backend/ # Express + MongoDB (API server)                                                                                                                                            
+├── .gitignore                                                                                                      
+└── README.md         
 
