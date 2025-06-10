@@ -5,7 +5,7 @@ A fullstack authentication application with:
 - 🔐 Google OAuth login
 - 🍪 Session-based auth with secure cookies
 - 🧑 User profile editing
-- 💻 Frontend: React + Vite + Zustand
+- 💻 Frontend: React Router + Vite + Zustand
 - ⚙️ Backend: Express + MongoDB + Mongoose
 
 ---
@@ -47,3 +47,44 @@ http://localhost:8000/auth/google/callback
 ```bash
 VITE_BASE_URL=http://localhost:8000
 ```
+### 3. Install Dependencies
+
+Backend
+
+```bash
+cd backend
+npm install
+```
+
+Frontend
+
+```bash
+cd ../frontend
+npm install
+```
+
+## ✨ Features
+- Google OAuth2 login flow
+
+- Secure session-based authentication
+
+- Zustand for global state management
+
+- Profile page with logout and edit functionality
+
+- Form validation and toast notifications
+
+- Protected and public routes
+
+## 🛠 Tech Stack
+
+| Layer      | Stack                                        |
+| ---------- | -------------------------------------------- |
+| Frontend   | React, Vite, Zustand, Tailwind, React Router |
+| Backend    | Node.js, Express, MongoDB, Mongoose          |
+| Auth       | express-session, Google OAuth2               |
+| State Mgmt | Zustand                                      |
+
+
+## 🧑‍💻 Author
+Made with ❤️ by Jadesola Adeagbo
