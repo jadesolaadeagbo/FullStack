@@ -219,7 +219,7 @@ const Signup = () => {
                   className='absolute right-3 top-[40px] transform -translate-y-1/2 cursor-pointer text-gray-600'
                   onClick={() => setShowPassword(prev => !prev)}
                 >
-                  <img src={showPassword ? eye : eyeOff} width={20} />
+                  <img src={showPassword ? eyeOff : eye} width={20} />
                 </span>
                 {formErrors.password && <p className="text-red-500 text-sm pt-1">{formErrors.password}</p>}
               </div>
@@ -237,7 +237,7 @@ const Signup = () => {
                   className='absolute right-3 top-[40px] transform -translate-y-1/2 cursor-pointer text-gray-600'
                   onClick={() => setShowConfirmPassword(prev => !prev)}
                 >
-                  <img src={showConfirmPassword ? eye : eyeOff} width={20} />
+                  <img src={showConfirmPassword ? eyeOff : eye} width={20} />
                 </span>
                 {formErrors.confirmPassword && <p className="text-red-500 text-sm">{formErrors.confirmPassword}</p>}
               </div>

@@ -106,7 +106,7 @@ const SetPassword = () => {
                   className='absolute right-3 top-[40px] transform -translate-y-1/2 cursor-pointer text-gray-600'
                   onClick={() => setShowNewPassword(prev => !prev)}
                 >
-                  {showNewPassword ? <img src={eye} width={20} /> : <img src={eyeOff} width={20} />}
+                  {showNewPassword ? <img src={eyeOff} width={20} /> : <img src={eye} width={20} />}
                 </span>
                 {errors.newPassword && <p className="text-red-500 text-sm mt-1">{errors.newPassword}</p>}
               </div>
@@ -124,7 +124,7 @@ const SetPassword = () => {
                   className='absolute right-3 top-[40px] transform -translate-y-1/2 cursor-pointer text-gray-600'
                   onClick={() => setShowConfirmNewPassword(prev => !prev)}
                 >
-                  {showConfirmNewPassword ? <img src={eye} width={20} /> : <img src={eyeOff} width={20} />}
+                  {showConfirmNewPassword ? <img src={eyeOff} width={20} /> : <img src={eye} width={20} />}
                 </span>
                 {errors.confirmNewPassword && <p className="text-red-500 text-sm mt-1">{errors.confirmNewPassword}</p>}
               </div>

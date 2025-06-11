@@ -112,7 +112,7 @@ const Login = () => {
                   className='absolute right-3 top-[40px] transform -translate-y-1/2 cursor-pointer text-gray-600'
                   onClick={() => setShowPassword(prev => !prev)}
                 >
-                  <img src={showPassword ? eye : eyeOff} width={20} />
+                  <img src={showPassword ? eyeOff : eye} width={20} />
                 </span>
               </div>
 

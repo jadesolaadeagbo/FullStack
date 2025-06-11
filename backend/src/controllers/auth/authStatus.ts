@@ -26,6 +26,7 @@ export default async function authStatus(req: Request, res: Response){
         }
     
          res.status(200).json(user);
+         
       } catch (err) {
         console.error("Error in authStatus:", err);
         res.status(500).json({ message: "Internal server error" });

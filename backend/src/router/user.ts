@@ -4,6 +4,6 @@ import editUser from "../controllers/user/editUser";
 
 const router = express.Router();
 
-router.patch("/user/edit/", isAuthenticated, editUser)
+router.patch("/user/edit", isAuthenticated, editUser)
 
 export default router;

@@ -3,7 +3,6 @@ import type { IForm, LoginData, forgotPasswordData, verifyCodeData, resetPasswor
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 type SignupData = IForm;
-import { useAuthStore } from "~/store/authStore";
 
 export const signup = async (formData: SignupData) => {
   const response = await fetch(`${BASE_URL}/auth/signup`, {

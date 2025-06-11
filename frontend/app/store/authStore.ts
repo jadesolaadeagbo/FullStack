@@ -19,6 +19,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
     try {
       const user = await authenticationStatus();
       set({ user });
+      console.log(user)
     } catch (error: any) {
       if (error.message !== "Unauthorized") {
         console.error("Unexpected error fetching user:", error);

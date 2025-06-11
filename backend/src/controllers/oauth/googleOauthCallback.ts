@@ -4,8 +4,6 @@ import fetch from "node-fetch"
 import { GoogleUser } from "../../types/googleuser";
 import { User } from "../../models/user";
 
-const frontendUrl = process.env.FRONTEND_URL!;
-
 
 async function getUserDetails(access_token: string): Promise<GoogleUser>{
     const response = await fetch (`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`)
@@ -18,7 +16,6 @@ export default async function googleOauthCallback(req: Request, res: Response){
 
     try {
       const redirectUrl = process.env.REDIRECT_URL!;
-
 
         const oAuth2Client = new OAuth2Client(
             process.env.CLIENT_ID,

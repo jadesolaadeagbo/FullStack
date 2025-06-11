@@ -18,21 +18,9 @@ app.use(express.json());
 
 const allowedOrigins = [
   "https://full-stack-delta-lyart.vercel.app",
-  "https://full-stack-git-main-rubies21s-projects.vercel.app",
-  "https://full-stack-jheal73b3-rubies21s-projects.vercel.app",
   "http://localhost:5173"
 ];
 
-app.options("*", cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -58,7 +46,7 @@ app.use(session({
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
         maxAge: 1000 * 60 * 60 * 24,
-        sameSite: "none"
+        sameSite: process.env.SAME_SITE as boolean | "lax" | "strict" | "none" | undefined
     }
 }))
 
