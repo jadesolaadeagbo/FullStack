@@ -16,7 +16,12 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
-const allowedOrigins = ["https://full-stack-delta-lyart.vercel.app", "http://localhost:5173"];
+const allowedOrigins = [
+  "https://full-stack-delta-lyart.vercel.app",
+  "https://full-stack-git-main-rubies21s-projects.vercel.app",
+  "https://full-stack-jheal73b3-rubies21s-projects.vercel.app",
+  "http://localhost:5173"
+];
 
 app.options("*", cors({
   origin: (origin, callback) => {
