@@ -17,10 +17,13 @@ const UserProfile = () => {
   const [firstName, setFirstName] = useState(user?.firstName ?? '');
   const [lastName, setLastName] = useState(user?.lastName ?? '');
   const [phone, setPhone] = useState(user?.phone ?? '');
+  const [loading, setLoading] = useState(false);
 
   const email = user?.email ?? '';
 
   const handleLogout = async () => {
+    setLoading(true);
+
     try {
       await logout();
       await fetchUser();
@@ -30,11 +33,15 @@ const UserProfile = () => {
     } catch (error: any) {
       toast.dismiss();
       toast.error(error.message || 'Something went wrong');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleEdit = async () => {
     if (isEditing) {
+      setLoading(true);
+
       try {
         await updateUserProfile({ firstName, lastName, phone });
         await fetchUser();
@@ -44,6 +51,8 @@ const UserProfile = () => {
       } catch (error: any) {
         toast.dismiss();
         toast.error(error.message || 'Failed to update profile');
+      } finally {
+        setLoading(false);
       }
     } else {
       setIsEditing(true);

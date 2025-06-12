@@ -15,6 +15,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+
   const navigate = useNavigate();
   const { fetchUser } = useAuthStore();
 
@@ -74,12 +75,12 @@ const Login = () => {
   return (
     <div className="px-[5%] sm:px-20 lg:px-32 py-20 lg:py-10 h-screen">
       <img src={Logo} alt="logo" height="30px" width="30px" />
-      <div className="flex items-center lg:items-start justify-center lg:justify-between">
+      <div className="flex items-center lg:items-start justify-center xl:justify-between">
         <div className="pt-10 sm:pt-40 md:pt-30">
           <h1 className="text-5xl font-bold pb-3.5">Login</h1>
           <p className="font-light text-gray-500">Login to access your account</p>
 
-          <form className=" w-[90vw] lg:w-[550px]" onSubmit={handleSubmit}>
+          <form className=" w-[90vw] lg:w-[80vw] xl:w-[550px]" onSubmit={handleSubmit}>
             <div className="flex flex-col pt-5">
               <input
                 type="email"

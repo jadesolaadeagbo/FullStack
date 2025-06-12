@@ -130,7 +130,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="px-32 py-10 h-screen">
+    <div className="px-10 lg:px-32 py-10 md:py-20 lg:py-10 h-screen">
       <div>
         <div className="flex justify-end">
           <img src={Logo} alt="Logo" height={'30px'} width={'30px'} />
@@ -140,17 +140,17 @@ const Signup = () => {
           <img
             src={SignupImage}
             alt="signup"
-            className="pb-20"
+            className="pb-20 hidden xl:block"
             style={{ height: 'calc(100vh - 80px)' }}
           />
 
-          <div className="pt-10 w-[700px]">
+          <div className="pt-10 md:pt-30 w-[90vw] lg:w-[700px]">
             <h1 className="text-5xl font-bold pb-3.5">Sign up</h1>
             <p className="font-light text-gray-500">
               Let’s get you all set up so you can access your personal account.
             </p>
 
-            <form onSubmit={handleSubmit} className="pb-10">
+            <form onSubmit={handleSubmit}>
               <div className="flex gap-5 pt-5">
                 <div className="w-1/2">
                   <input
@@ -255,7 +255,7 @@ const Signup = () => {
                   checked={terms}
                   onChange={handleChange}
                 />
-                <span className="text-sm flex gap-1">
+                <span className="text-sm flex gap-0.5 md:gap-1">
                   I agree to all the <p className="text-red-500">Terms</p> and{' '}
                   <p className="text-red-500">Privacy Policies</p>
                 </span>
@@ -284,7 +284,7 @@ const Signup = () => {
             </form>
 
             <button
-              className="cursor-pointer border border-gray-500 py-2 w-full rounded-sm flex justify-center mt-5"
+              className="cursor-pointer border border-gray-500 py-2 w-full rounded-sm flex justify-center mt-0"
               onClick={handleGoogleSignup}
             >
               <img src={gmail} alt="" height={20} width={20} /> &nbsp; Sign up with Google
