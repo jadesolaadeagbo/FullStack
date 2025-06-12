@@ -59,9 +59,11 @@ export default async function googleOauthCallback(req: Request, res: Response){
       //@ts-ignore
       req.session.userId = user._id.toString();
 
-      const frontendUrl = process.env.FRONTEND_URL!;
 
-      res.redirect(`${frontendUrl}/auth/loading`)
+      const frontendRedirect = process.env.FRONTEND_REDIRECT!;
+      
+
+      res.redirect(frontendRedirect)
 
     } catch (error) {
         console.error("Error in google oauth response controller", error)

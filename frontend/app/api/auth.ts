@@ -68,7 +68,7 @@ export const authenticationStatus = async () =>{
   });
 
   if (response.status === 401) {
-    return null; 
+    return null;
   }
 
   const data = await response.json();

@@ -6,7 +6,8 @@ export default async function handleRequest(req: Request, res: Response){
        res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL!);
        res.header("Referral-Policy", "no-referral-when-downgrade");
 
-       const redirectUrl = "http://localhost:8000/auth/google/callback";
+      const redirectUrl = process.env.REDIRECT_URL!;
+
 
        const oAuth2Client = new OAuth2Client(
             process.env.CLIENT_ID,

@@ -56,11 +56,28 @@ cd backend
 npm install
 ```
 
-Frontend
+In another terminal, open your frontend folder
 
 ```bash
-cd ../frontend
+cd frontend
 npm install
+```
+
+
+### 4. Start your application
+
+Backend:
+
+```bash
+cd backend
+npm run dev
+```
+
+In another terminal, run your Frontend application:
+
+```bash
+cd frontend
+npm run dev
 ```
 
 ## ✨ Features
