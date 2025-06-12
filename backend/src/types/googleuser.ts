@@ -1,5 +1,4 @@
 export interface GoogleUser {
-    email: string;
-    name: string;
-  }
-  
+  email: string;
+  name: string;
+}

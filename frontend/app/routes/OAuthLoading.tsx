@@ -1,7 +1,7 @@
-import { Loader2 } from "lucide-react"; // optional, uses lucide-react icon
-import { useEffect } from "react";
-import { useAuthStore } from "~/store/authStore";
-import { useNavigate } from "react-router";
+import { Loader2 } from 'lucide-react'; // optional, uses lucide-react icon
+import { useEffect } from 'react';
+import { useAuthStore } from '~/store/authStore';
+import { useNavigate } from 'react-router';
 
 export default function OAuthLoading() {
   const { fetchUser } = useAuthStore();
@@ -10,7 +10,7 @@ export default function OAuthLoading() {
   useEffect(() => {
     const checkAuth = async () => {
       await fetchUser();
-      navigate("/userProfile", { replace: true });
+      navigate('/userProfile', { replace: true });
     };
 
     checkAuth();

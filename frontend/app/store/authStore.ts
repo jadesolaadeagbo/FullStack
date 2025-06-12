@@ -1,7 +1,7 @@
 // stores/authStore.ts
-import { create } from "zustand";
-import { authenticationStatus } from "~/api/auth";
-import type { User } from "~/types";
+import { create } from 'zustand';
+import { authenticationStatus } from '~/api/auth';
+import type { User } from '~/types';
 
 interface AuthStore {
   user: User | null;
@@ -19,10 +19,9 @@ export const useAuthStore = create<AuthStore>((set) => ({
     try {
       const user = await authenticationStatus();
       set({ user });
-
     } catch (error: any) {
-      if (error.message !== "Unauthorized") {
-        console.error("Unexpected error fetching user:", error);
+      if (error.message !== 'Unauthorized') {
+        console.error('Unexpected error fetching user:', error);
       }
       set({ user: null });
     } finally {

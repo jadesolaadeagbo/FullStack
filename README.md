@@ -12,11 +12,11 @@ A fullstack authentication application with:
 
 ## 📁 Project Structure
 
-my-app/                                                                                                                                                                                  
-├── frontend/ # Vite + React (client)                                    
-├── backend/ # Express + MongoDB (API server)                                                                                                                                            
-├── .gitignore                                                                                                      
-└── README.md         
+my-app/  
+├── frontend/ # Vite + React (client)  
+├── backend/ # Express + MongoDB (API server)  
+├── .gitignore  
+└── README.md
 
 ## 🚀 Getting Started
 
@@ -28,9 +28,11 @@ cd FullStack
 ```
 
 ### 2. Setup Environment Variables
+
 Create .env files in both frontend/ and backend/ folders.
 
 🔧 backend/.env
+
 ```bash
 PORT = {port}
 MONGODB_URI = {MONGO_URI}
@@ -40,13 +42,17 @@ CLIENT_SECRET = {google_client_secret}
 ```
 
 Make sure your Google OAuth redirect URI is added to your Google Developer Console:
+
 ```bash
 http://localhost:8000/auth/google/callback
 ```
+
 🔧 frontend/.env
+
 ```bash
 VITE_BASE_URL=http://localhost:8000
 ```
+
 ### 3. Install Dependencies
 
 Backend
@@ -62,7 +68,6 @@ In another terminal, open your frontend folder
 cd frontend
 npm install
 ```
-
 
 ### 4. Start your application
 
@@ -81,6 +86,7 @@ npm run dev
 ```
 
 ## ✨ Features
+
 - Google OAuth2 login flow
 
 - Secure session-based authentication
@@ -102,6 +108,6 @@ npm run dev
 | Auth       | express-session, Google OAuth2               |
 | State Mgmt | Zustand                                      |
 
-
 ## 🧑‍💻 Author
+
 Made with ❤️ by Jadesola Adeagbo

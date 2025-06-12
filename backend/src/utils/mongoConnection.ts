@@ -1,37 +1,37 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-let isConnected = false; 
+let isConnected = false;
 
 export function connection(): void {
-    const mongoUri = process.env.MONGODB_URI;
+  const mongoUri = process.env.MONGODB_URI;
 
-    if (!mongoUri) {
-        console.log("MongoDB URI is not defined");
+  if (!mongoUri) {
+    console.log('MongoDB URI is not defined');
+    process.exit(1);
+  }
+
+  if (!isConnected) {
+    mongoose
+      .connect(mongoUri)
+      .then(() => {
+        isConnected = true;
+        console.log('Connection to MongoDB successful');
+      })
+      .catch((error: Error) => {
+        console.error('Error in MongoDB connection:', error);
         process.exit(1);
-    }
-
-    if (!isConnected) {
-        mongoose
-            .connect(mongoUri)
-            .then(() => {
-                isConnected = true;
-                console.log("Connection to MongoDB successful");
-            })
-            .catch((error: Error) => {
-                console.error("Error in MongoDB connection:", error);
-                process.exit(1);
-            });
-    }
+      });
+  }
 }
 
 export async function closeConnection(): Promise<void> {
-    if (isConnected) {
-        try {
-            await mongoose.connection.close();
-            isConnected = false;
-            console.log("MongoDB connection closed successfully.");
-        } catch (error) {
-            console.error("Error closing MongoDB connection:", error);
-        }
+  if (isConnected) {
+    try {
+      await mongoose.connection.close();
+      isConnected = false;
+      console.log('MongoDB connection closed successfully.');
+    } catch (error) {
+      console.error('Error closing MongoDB connection:', error);
     }
+  }
 }
