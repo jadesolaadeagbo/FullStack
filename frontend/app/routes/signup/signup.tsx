@@ -284,7 +284,7 @@ const Signup = () => {
             </form>
 
             <button
-              className="cursor-pointer border border-gray-500 py-2 w-full rounded-sm flex justify-center mt-0"
+              className="cursor-pointer border border-gray-500 py-2 w-full rounded-sm flex justify-center mb-10"
               onClick={handleGoogleSignup}
             >
               <img src={gmail} alt="" height={20} width={20} /> &nbsp; Sign up with Google
