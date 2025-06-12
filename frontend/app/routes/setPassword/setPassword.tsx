@@ -80,11 +80,11 @@ const SetPassword = () => {
   };
 
   return (
-    <div className="px-32 py-10 h-screen">
+    <div className="px-10 lg:px-32 py-10 md:py-20 lg:py-10 h-screen">
       <div>
         <img src={Logo} alt="logo" height="30px" width="30px" />
         <div className="flex items-start justify-between">
-          <div className="pt-30 w-[550px]">
+          <div className="pt-10 md:pt-30 w-[90vw] lg:w-[550px]">
             <a href="/login" className="flex gap-2 pl-2 pb-4 text-sm">
               <img src={back} alt="Back" width={10} height={10} />
               Back to login
@@ -154,7 +154,7 @@ const SetPassword = () => {
           <img
             src={forgotPasswordImage}
             alt="login page"
-            className="pb-20"
+            className="pb-20 hidden xl:block"
             style={{ height: 'calc(100vh - 80px)' }}
           />
         </div>

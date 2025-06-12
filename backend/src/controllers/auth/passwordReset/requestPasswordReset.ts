@@ -53,7 +53,7 @@ export default async function requestPasswordReset(req: Request, res: Response) 
       from: `"FullStack" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: 'Password Reset Code',
-      text: `Hi ${user.firstName},\n\nWe received a request to reset your password. Use the following code to proceed:\n\n${code}\n\nIf you did not request this, please ignore this message.\n\nThanks,\nThe FullStack Team`,
+      text: `Hi ${user.firstName},\n\nWe received a request to reset your password. Use the following code to proceed:\n\n${code}\n\nThis code will expire in 5 minutes.\n\nIf you did not request this, please ignore this message.\n\nThanks,\nThe FullStack Team`,
     };
 
     await transporter.sendMail(mailOptions);

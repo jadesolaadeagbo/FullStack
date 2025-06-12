@@ -37,7 +37,7 @@ const VerifyCode = () => {
     try {
       await verifyCode({ email, code });
       toast.dismiss();
-      toast.success('Code verified successfully!');
+      toast.success('Code verified successfully! Please set a new password');
 
       setCode('');
       navigate('/setPassword', { state: { email, code } });
@@ -50,16 +50,16 @@ const VerifyCode = () => {
   };
 
   return (
-    <div className="px-32 py-10 h-screen">
+    <div className="px-10 lg:px-32 py-10 md:py-20 lg:py-10 h-screen">
       <div>
         <img src={Logo} alt="Company Logo" height={30} width={30} />
         <div className="flex items-start justify-between">
-          <div className="pt-30 w-[550px]">
+          <div className="pt-10 md:pt-30 w-[90vw] lg:w-[550px]">
             <a href="/login" className="flex gap-2 pl-2 pb-4 text-sm">
               <img src={back} alt="Back" width={10} height={10} />
               Back to login
             </a>
-            <h1 className="text-5xl font-bold pb-5">Verify Code</h1>
+            <h1 className="text-2xl md:text-5xl font-bold pb-5 md:pt-10 xl:pt-0">Verify Code</h1>
             <p className="font-light text-gray-500 pt-5">
               An authentication code has been sent to your email.
             </p>
@@ -80,7 +80,7 @@ const VerifyCode = () => {
               </div>
               <span className="flex pt-2 text-sm">
                 Didn’t receive a code?&nbsp;
-                <a href="/forgotPassword" className="text-red-400">
+                <a href="/forgotPassword" className="text-red-500">
                   Resend
                 </a>
               </span>
@@ -101,7 +101,7 @@ const VerifyCode = () => {
           <img
             src={LoginImage}
             alt="Verification Illustration"
-            className="pb-20"
+            className="pb-20 hidden xl:block"
             style={{ height: 'calc(100vh - 80px)' }}
           />
         </div>

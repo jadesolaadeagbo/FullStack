@@ -8,7 +8,6 @@ import { googleLogin, signup } from '~/api/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import type { IForm, IFormErrors } from '../../types';
-import { useAuthStore } from '~/store/authStore';
 
 const Signup = () => {
   useEffect(() => {
@@ -120,8 +119,6 @@ const Signup = () => {
     try {
       setLoading(true);
       await googleLogin();
-
-      await useAuthStore.getState().fetchUser();
     } catch (error: any) {
       console.error('Google login error:', error);
 
@@ -259,8 +256,8 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <span className="text-sm flex gap-1">
-                  I agree to all the <p className="text-red-400">Terms</p> and{' '}
-                  <p className="text-red-400">Privacy Policies</p>
+                  I agree to all the <p className="text-red-500">Terms</p> and{' '}
+                  <p className="text-red-500">Privacy Policies</p>
                 </span>
               </div>
               {formErrors.terms && <p className="text-red-500 text-sm">{formErrors.terms}</p>}
@@ -274,7 +271,7 @@ const Signup = () => {
 
               <span className="text-center flex pt-5 justify-center">
                 Already have an account? &nbsp;
-                <a href="/login" className="text-red-400">
+                <a href="/login" className="text-red-500">
                   Log in
                 </a>
               </span>
@@ -287,7 +284,7 @@ const Signup = () => {
             </form>
 
             <button
-              className="cursor-pointer border border-gray-400 py-2 w-full rounded-sm flex justify-center mt-5"
+              className="cursor-pointer border border-gray-500 py-2 w-full rounded-sm flex justify-center mt-5"
               onClick={handleGoogleSignup}
             >
               <img src={gmail} alt="" height={20} width={20} /> &nbsp; Sign up with Google

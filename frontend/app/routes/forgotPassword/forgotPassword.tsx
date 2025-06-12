@@ -40,7 +40,7 @@ const ForgotPassword = () => {
     try {
       await forgotPassword({ email });
       toast.dismiss();
-      toast.success('A Verification code has been sent to your email.');
+      toast.success('A Verification code has been sent to your email. It will expire in 5 minutes');
       setEmail('');
 
       navigate('/verifyCode', { state: { email } });
@@ -63,16 +63,18 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="px-32 py-10 h-screen">
+    <div className="px-10 md:px-32 py-10 md:py-20 lg:py-10 h-screen">
       <div>
         <img src={Logo} alt="" height={'30px'} width={'30px'} />
         <div className=" flex items-start justify-between ">
-          <div className="pt-30 w-[550px]">
+          <div className="pt-10 md:pt-30 w-[90vw] lg:w-[550px]">
             <a href="/login" className="flex gap-2 pl-2 pb-4 text-sm">
               <img src={back} alt="" width={10} height={10} />
               Back to login
             </a>
-            <h1 className="text-5xl font-bold pb-3.5">Forgot your password?</h1>
+            <h1 className=" text-2xl md:text-5xl font-bold pb-3.5 md:pt-10 xl:pt-0">
+              Forgot your password?
+            </h1>
             <p className="font-light text-gray-500 pt-5">
               Don’t worry, happens to all of us. Enter your email below to recover your password
             </p>
@@ -101,7 +103,7 @@ const ForgotPassword = () => {
           <img
             src={ForgotPasswordImage}
             alt="login page"
-            className=" pb-20"
+            className="pb-20 hidden xl:block"
             style={{ height: 'calc(100vh - 80px)' }}
           />
         </div>
