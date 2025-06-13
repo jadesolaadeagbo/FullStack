@@ -18,17 +18,9 @@ app.use(express.json());
 const allowedOrigins = ['https://full-stack-delta-lyart.vercel.app', 'http://localhost:5173'];
 
 app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-  })
+  cors()
 );
+
 
 app.use(
   session({
@@ -43,8 +35,8 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 1000 * 60 * 60 * 24,
-      sameSite: process.env.SAME_SITE as boolean | 'lax' | 'strict' | 'none' | undefined,
     },
   })
 );
