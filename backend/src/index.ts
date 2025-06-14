@@ -7,28 +7,35 @@ import googleAuth from './router/googleAuth';
 import user from './router/user';
 import MongoStore from 'connect-mongo';
 import session from 'express-session';
-
+import path from 'path';
 dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 8000;
 
+
+const __dirname = path.resolve();
+
 app.use(express.json());
 
-const allowedOrigins = ['https://fullstack-waxj.onrender.com', 'http://localhost:5173'];
+app.use(express.static(path.join(__dirname, 'build')));
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-  })
-);
+
+
+// const allowedOrigins = ['https://fullstack-waxj.onrender.com', 'http://localhost:5173'];
+
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error('Not allowed by CORS'));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
 
 app.use(
   session({
@@ -54,6 +61,10 @@ app.set('trust proxy', 1);
 app.use('/auth', authentication);
 app.use('/auth/google', googleAuth);
 app.use('/', user);
+
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 const server = app.listen(PORT, () => {
   connection();
