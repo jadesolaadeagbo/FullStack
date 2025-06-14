@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
-const allowedOrigins = ['https://full-stack-delta-lyart.vercel.app', 'http://localhost:5173'];
+const allowedOrigins = ['https://fullstack-waxj.onrender.com', 'http://localhost:5173'];
 
 app.use(
   cors({
@@ -43,7 +43,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: "none",
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
