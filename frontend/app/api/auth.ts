@@ -7,12 +7,12 @@ import type {
   updateUserData,
 } from '../types';
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 type SignupData = IForm;
 
 export const signup = async (formData: SignupData) => {
-  const response = await fetch(`${BASE_URL}/auth/signup`, {
+  const response = await fetch(`${API_URL}/auth/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export const signup = async (formData: SignupData) => {
 };
 
 export const login = async (formData: LoginData) => {
-  const response = await fetch(`${BASE_URL}/auth/login`, {
+  const response = await fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const login = async (formData: LoginData) => {
 };
 
 export const logout = async () => {
-  const response = await fetch(`${BASE_URL}/auth/logout`, {
+  const response = await fetch(`${API_URL}/auth/logout`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export const logout = async () => {
 };
 
 export const authenticationStatus = async () => {
-  const response = await fetch(`${BASE_URL}/auth/status`, {
+  const response = await fetch(`${API_URL}/auth/status`, {
     method: 'GET',
     credentials: 'include',
   });
@@ -87,7 +87,7 @@ export const authenticationStatus = async () => {
 
 export const googleLogin = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/auth/google`, {
+    const response = await fetch(`${API_URL}/auth/google`, {
       method: 'POST',
       credentials: 'include',
     });
@@ -100,7 +100,7 @@ export const googleLogin = async () => {
 };
 
 export const forgotPassword = async (formData: forgotPasswordData) => {
-  const response = await fetch(`${BASE_URL}/auth/password-reset`, {
+  const response = await fetch(`${API_URL}/auth/password-reset`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ export const forgotPassword = async (formData: forgotPasswordData) => {
 };
 
 export const verifyCode = async (formData: verifyCodeData) => {
-  const response = await fetch(`${BASE_URL}/auth/password-reset/verify`, {
+  const response = await fetch(`${API_URL}/auth/password-reset/verify`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ export const verifyCode = async (formData: verifyCodeData) => {
 };
 
 export const resetPassword = async (formData: resetPasswordData) => {
-  const response = await fetch(`${BASE_URL}/auth/password-reset/confirm`, {
+  const response = await fetch(`${API_URL}/auth/password-reset/confirm`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ export const resetPassword = async (formData: resetPasswordData) => {
 };
 
 export const updateUserProfile = async (formData: updateUserData) => {
-  const response = await fetch(`${BASE_URL}/user/edit`, {
+  const response = await fetch(`${API_URL}/api/user/edit`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

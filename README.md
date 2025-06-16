@@ -50,7 +50,7 @@ http://localhost:8000/auth/google/callback
 🔧 frontend/.env
 
 ```bash
-VITE_BASE_URL=http://localhost:8000
+VITE_API_URL=http://localhost:8000
 ```
 
 ### 3. Install Dependencies

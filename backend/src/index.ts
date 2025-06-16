@@ -57,7 +57,7 @@ app.set('trust proxy', 1);
 
 app.use('/auth', authentication);
 app.use('/auth/google', googleAuth);
-app.use('/', user);
+app.use('/api', user);
 
 const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
