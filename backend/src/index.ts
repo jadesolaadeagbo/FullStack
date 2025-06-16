@@ -7,6 +7,9 @@ import googleAuth from './router/googleAuth';
 import user from './router/user';
 import MongoStore from 'connect-mongo';
 import session from 'express-session';
+import path from 'path';
+import fs from "fs"
+
 
 dotenv.config();
 
@@ -15,7 +18,8 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
-const allowedOrigins = ['https://fullstack-waxj.onrender.com', 'http://localhost:5173'];
+
+const allowedOrigins = ['https://fullstack-waxj.onrender.com', "https://fullstack-ia7o.onrender.com", 'http://localhost:5173'];
 
 app.use(
   cors({
@@ -54,6 +58,14 @@ app.set('trust proxy', 1);
 app.use('/auth', authentication);
 app.use('/auth/google', googleAuth);
 app.use('/', user);
+
+const publicPath = path.join(__dirname, 'public');
+app.use(express.static(publicPath));
+
+app.get(/^\/(?!api\/).*/, (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
+
 
 const server = app.listen(PORT, () => {
   connection();
