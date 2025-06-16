@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 
 
-const allowedOrigins = ['https://fullstack-waxj.onrender.com', "https://fullstack-ia7o.onrender.com", 'http://localhost:5173'];
+const allowedOrigins = ['https://fullstack-waxj.onrender.com', "https://fullstack-ia7o.onrender.com", 'http://localhost:8000'];
 
 app.use(
   cors({
@@ -59,11 +59,16 @@ app.use('/auth', authentication);
 app.use('/auth/google', googleAuth);
 app.use('/api', user);
 
-const publicPath = path.join(__dirname, 'public');
+const publicPath = path.join(__dirname, '../public');
 app.use(express.static(publicPath));
 
 app.get(/^\/(?!api\/).*/, (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
+  const indexPath = path.join(publicPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(500).send('index.html not found. Did you run `npm run build` in frontend?');
+  }
 });
 
 
