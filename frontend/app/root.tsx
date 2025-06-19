@@ -51,7 +51,6 @@ export default function App() {
 
   useEffect(() => {
     fetchUser();
-    console.log(import.meta.env)
   }, [fetchUser]);
 
   return <Outlet />;

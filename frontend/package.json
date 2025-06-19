@@ -6,7 +6,9 @@
     "build": "react-router build && cp -r build/client ../backend/public",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "build:copy": "npm run build && rm -rf ../backend/public/* && cp -r build/client/* ../backend/public/"
+
   },
   "dependencies": {
     "@react-router/node": "^7.5.3",

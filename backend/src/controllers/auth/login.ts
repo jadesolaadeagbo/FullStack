@@ -24,15 +24,6 @@ export default async function login(req: Request, res: Response) {
       return;
     }
 
-    if (user.googleAuth) {
-      res.status(403).json({
-        status: '403',
-        message:
-          "Access denied: This account requires login via Google. Please use the 'Sign in with Google' option.",
-      });
-      return;
-    }
-
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
