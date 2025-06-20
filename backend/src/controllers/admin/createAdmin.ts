@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { User } from '../../models/user';
 import bcrypt from 'bcrypt';
 
-export default async function signup(req: Request, res: Response): Promise<void> {
+export default async function createAdmin(req: Request, res: Response): Promise<void> {
   try {
     const { firstName, lastName, email, phone, password } = req.body;
 
@@ -27,19 +27,20 @@ export default async function signup(req: Request, res: Response): Promise<void>
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const newUser = new User({
+    const newAdmin = new User({
       firstName,
       lastName,
       email,
       phone,
       password: hashedPassword,
+      role: "admin"
     });
 
-    await newUser.save();
+    await newAdmin.save();
 
     res.status(201).json({
       status: '200',
-      message: 'A new user created.',
+      message: 'A new administrative user created.',
     });
   } catch (error) {
     console.error('Error in signup controller!', error);

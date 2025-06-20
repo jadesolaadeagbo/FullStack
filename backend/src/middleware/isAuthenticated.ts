@@ -10,6 +10,7 @@ export default function isAuthenticated(req: Request, res: Response, next: NextF
       status: '401',
       message: 'Unauthorized. Please log in.',
     });
+    return;
   }
 
   if (requestedId && currentUserId !== requestedId) {
@@ -17,6 +18,7 @@ export default function isAuthenticated(req: Request, res: Response, next: NextF
       status: '403',
       message: 'You are not allowed to perform this action.',
     });
+    return;
   }
 
   next();

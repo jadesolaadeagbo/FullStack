@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../../models/user';
 
-export default async function (req: Request, res: Response, next: NextFunction) {
+export default async function (req: Request, res: Response) {
   try {
     const { firstName, lastName, phone } = req.body;
 

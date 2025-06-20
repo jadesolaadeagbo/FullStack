@@ -8,7 +8,7 @@ export default async function login(req: Request, res: Response) {
 
     if (!email || !password) {
       res.status(400).json({
-        status: '400',
+        status: '400', 
         message: 'Both email and password are required!',
       });
       return;
@@ -37,6 +37,9 @@ export default async function login(req: Request, res: Response) {
     //@ts-ignore
     req.session.userId = user._id.toString();
 
+    // @ts-ignore
+    req.session.userRole = user.role;
+
     res.status(200).json({
       status: '200',
       message: 'Login Successful',
@@ -46,6 +49,7 @@ export default async function login(req: Request, res: Response) {
         lastName: user.lastName,
         email: user.email,
         phone: user.phone,
+        role: user.role
       },
     });
   } catch (error) {
