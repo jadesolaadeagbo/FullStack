@@ -5,13 +5,13 @@ import { connection, closeConnection } from './utils/mongoConnection';
 import authentication from './router/authentication';
 import googleAuth from './router/googleAuth';
 import user from './router/user';
-import store from "./router/store"
-import product from "./router/product"
+import store from './router/store';
+import product from './router/product';
+import cart from './router/cart';
 import MongoStore from 'connect-mongo';
 import session from 'express-session';
 import path from 'path';
-import fs from "fs"
-
+import fs from 'fs';
 
 dotenv.config();
 
@@ -20,8 +20,7 @@ const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 
-
-const allowedOrigins = [ "https://fullstack-ia7o.onrender.com", 'http://localhost:8000' ];
+const allowedOrigins = ['https://fullstack-ia7o.onrender.com', 'http://localhost:5173'];
 
 app.use(
   cors({
@@ -62,6 +61,7 @@ app.use('/auth/google', googleAuth);
 app.use('/api', user);
 app.use('/api', store);
 app.use('/api', product);
+app.use('/api/cart', cart);
 
 const publicPath = path.join(__dirname, '../public');
 app.use(express.static(publicPath));
@@ -74,7 +74,6 @@ app.get(/^\/(?!api\/).*/, (req, res) => {
     res.status(500).send('index.html not found. Did you run `npm run build` in frontend?');
   }
 });
-
 
 const server = app.listen(PORT, () => {
   connection();

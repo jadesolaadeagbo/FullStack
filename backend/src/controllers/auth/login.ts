@@ -8,7 +8,7 @@ export default async function login(req: Request, res: Response) {
 
     if (!email || !password) {
       res.status(400).json({
-        status: '400', 
+        status: '400',
         message: 'Both email and password are required!',
       });
       return;
@@ -49,7 +49,7 @@ export default async function login(req: Request, res: Response) {
         lastName: user.lastName,
         email: user.email,
         phone: user.phone,
-        role: user.role
+        role: user.role,
       },
     });
   } catch (error) {

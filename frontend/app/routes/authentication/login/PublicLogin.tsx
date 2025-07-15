@@ -1,4 +1,4 @@
-import PublicRoute from '../PublicRoute';
+import PublicRoute from '../../PublicRoute';
 import Login from './login';
 
 export default function PublicLogin() {

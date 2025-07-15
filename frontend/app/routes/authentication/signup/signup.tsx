@@ -7,7 +7,7 @@ import eyeOff from 'public/eye-off.svg';
 import { googleLogin, signup } from '~/api/auth';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
-import type { IForm, IFormErrors } from '../../types';
+import type { IForm, IFormErrors } from '~/types';
 
 const Signup = () => {
   useEffect(() => {

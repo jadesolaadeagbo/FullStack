@@ -10,7 +10,7 @@ export default function OAuthLoading() {
   useEffect(() => {
     const checkAuth = async () => {
       await fetchUser();
-      navigate('/userProfile', { replace: true });
+      navigate('/shop', { replace: true });
     };
 
     checkAuth();

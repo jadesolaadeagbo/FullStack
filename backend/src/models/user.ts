@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document, ObjectId, Model } from 'mongoose';
 
-export enum Role{
-  Admin = "admin",
-  Customer = "customer"
+export enum Role {
+  Admin = 'admin',
+  Customer = 'customer',
 }
 
 export interface IUser extends Document {
@@ -13,7 +13,7 @@ export interface IUser extends Document {
   phone: string;
   password: string;
   googleAuth: boolean;
-  role: Role
+  role: Role;
 }
 
 const UserSchema: Schema<IUser> = new Schema({
@@ -48,11 +48,11 @@ const UserSchema: Schema<IUser> = new Schema({
     type: Boolean,
     default: false,
   },
-  role:{
+  role: {
     type: String,
     enum: Object.values(Role),
     default: Role.Customer,
-  }
+  },
 });
 
 export const User: Model<IUser> = mongoose.model<IUser>('User', UserSchema);

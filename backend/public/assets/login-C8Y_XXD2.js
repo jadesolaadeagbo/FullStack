@@ -1,1 +1,2 @@
-const n="/assets/login-DSnvXlk5.png";export{n as L};
+const n = '/assets/login-DSnvXlk5.png';
+export { n as L };

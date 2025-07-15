@@ -27,6 +27,7 @@ export interface User {
   lastName: string;
   email: string;
   phone: string;
+  role: string;
 }
 
 export interface AuthContextType {
@@ -54,4 +55,57 @@ export interface updateUserData {
   firstName?: string;
   lastName?: string;
   phone?: string;
+}
+
+export interface IProduct {
+  _id: string;
+  storeId: string;
+  name: string;
+  description?: string;
+  price: number;
+  stock: number;
+  productImage?: string;
+}
+export interface IStore {
+  _id: string;
+  name: string;
+  description?: string;
+  location: string;
+  storeImage: string;
+  createdAt: string;
+  products: IProduct;
+}
+
+export interface ProductResponse {
+  products: IProduct[];
+  total: number;
+  totalPages: number;
+  currentPage: number;
+}
+
+export interface StoreResponse {
+  shops: IStore[];
+  total: number;
+  totalPages: number;
+  currentPage: number;
+}
+
+export interface CreateShopData {
+  name: string;
+  description: string;
+  location: string;
+}
+
+export interface CreateProductData {
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  storeId: string;
+}
+
+export interface UpdateShopData {
+  name?: string;
+  description?: string;
+  location?: string;
 }

@@ -11,7 +11,7 @@ export default async function createAdmin(req: Request, res: Response): Promise<
         status: '400',
         message: 'All fields are required!',
       });
-      return; 
+      return;
     }
 
     const existingUser = await User.findOne({ email });
@@ -33,7 +33,7 @@ export default async function createAdmin(req: Request, res: Response): Promise<
       email,
       phone,
       password: hashedPassword,
-      role: "admin"
+      role: 'admin',
     });
 
     await newAdmin.save();

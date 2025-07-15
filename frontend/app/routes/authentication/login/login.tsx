@@ -15,7 +15,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-
   const navigate = useNavigate();
   const { fetchUser } = useAuthStore();
 
@@ -45,7 +44,7 @@ const Login = () => {
       await fetchUser();
       toast.dismiss();
       toast.success('Login successful!');
-      navigate('/userProfile');
+      navigate('/shop');
 
       setEmail('');
       setPassword('');

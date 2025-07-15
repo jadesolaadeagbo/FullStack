@@ -6,7 +6,7 @@ import { isAdmin } from '../middleware/isAdmin';
 
 const router = express.Router();
 
-router.post("/admin/create", isAuthenticated, isAdmin, createAdmin)
+router.post('/admin/create', isAuthenticated, isAdmin, createAdmin);
 router.patch('/user/edit', isAuthenticated, editUser);
 
 export default router;

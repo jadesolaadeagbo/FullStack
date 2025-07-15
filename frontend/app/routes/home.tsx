@@ -1,11 +1,11 @@
 import type { Route } from './+types/home';
-import Login from './login/login';
+import Index from './shop';
 import { useAuthStore } from '~/store/authStore';
 import Loader from '~/components/Loader';
-import UserProfile from './userProfile/userProfile';
+import UserProfile from './authentication/userProfile/userProfile';
 
 export function meta({}: Route.MetaArgs) {
-  return [{ title: 'Authentication' }, { name: 'description', content: 'Authentication project' }];
+  return [{ title: 'AliMama' }, { name: 'description', content: 'AliMama' }];
 }
 
 export default function Home() {
@@ -13,5 +13,5 @@ export default function Home() {
 
   if (loading) return <Loader />;
 
-  return user ? <UserProfile /> : <Login />;
+  return <Index />;
 }

@@ -11,7 +11,7 @@ export default async function signup(req: Request, res: Response): Promise<void>
         status: '400',
         message: 'All fields are required!',
       });
-      return; 
+      return;
     }
 
     const existingUser = await User.findOne({ email });

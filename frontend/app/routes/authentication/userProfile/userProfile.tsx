@@ -59,6 +59,13 @@ const UserProfile = () => {
     }
   };
 
+  const handleCancel = () => {
+    setIsEditing(false);
+    setFirstName(user?.firstName ?? '');
+    setLastName(user?.lastName ?? '');
+    setPhone(user?.phone ?? '');
+  };
+
   return (
     <div className="bg-gradient-to-tl from-indigo-700 to-purple-500 h-[100vh] flex flex-col justify-center items-center gap-5">
       <div className="bg-white w-[70%] flex flex-col items-center justify-center rounded-xl h-[70%] ">
@@ -107,12 +114,25 @@ const UserProfile = () => {
           </div>
         )}
 
-        <button
-          onClick={handleEdit}
-          className="px-4 py-1 border border-blue-500 text-blue-500 rounded-xl cursor-pointer"
-        >
-          {isEditing ? 'Submit Changes' : 'Edit'}
-        </button>
+        <div className="flex gap-3 justify-center">
+          {isEditing ? (
+            <button
+              onClick={handleCancel}
+              className="px-4 py-1 border border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 rounded-xl cursor-pointer"
+            >
+              Cancel
+            </button>
+          ) : (
+            ''
+          )}
+
+          <button
+            onClick={handleEdit}
+            className="px-4 py-1 border border-blue-500 hover:bg-blue-500 hover:text-white text-blue-500 rounded-xl cursor-pointer"
+          >
+            {isEditing ? 'Submit Changes' : 'Edit'}
+          </button>
+        </div>
       </div>
 
       <button

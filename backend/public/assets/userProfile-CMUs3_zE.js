@@ -1,1 +1,129 @@
-import{a as l,s as j,o as e}from"./chunk-DQRVZFIR-D7VV7TLo.js";import{L as m}from"./logo-lY71twTc.js";import{u as y,b as v}from"./auth-B3Ozg4Wo.js";import{y as a}from"./index-CKk8P0yu.js";import{u as w}from"./authStore-DGrP8jNA.js";const k=()=>{l.useEffect(()=>{document.title="Dashboard"},[]);const h=j(),{fetchUser:d,user:t}=w(),[o,x]=l.useState(!1),[i,p]=l.useState((t==null?void 0:t.firstName)??""),[n,f]=l.useState((t==null?void 0:t.lastName)??""),[c,b]=l.useState((t==null?void 0:t.phone)??""),[S,r]=l.useState(!1),u=(t==null?void 0:t.email)??"",g=async()=>{r(!0);try{await v(),await d(),a.dismiss(),a.success("User successfully logged out"),h("/login",{replace:!0})}catch(s){a.dismiss(),a.error(s.message||"Something went wrong")}finally{r(!1)}},N=async()=>{if(o){r(!0);try{await y({firstName:i,lastName:n,phone:c}),await d(),a.dismiss(),a.success("Profile updated successfully"),x(!1)}catch(s){a.dismiss(),a.error(s.message||"Failed to update profile")}finally{r(!1)}}else x(!0)};return e.jsxs("div",{className:"bg-gradient-to-tl from-indigo-700 to-purple-500 h-[100vh] flex flex-col justify-center items-center gap-5",children:[e.jsxs("div",{className:"bg-white w-[70%] flex flex-col items-center justify-center rounded-xl h-[70%] ",children:[o?e.jsxs("div",{className:"flex flex-col items-center justify-center",children:[e.jsx("div",{className:"flex",children:e.jsx("img",{src:m,alt:"",height:200,width:200})}),e.jsxs("span",{className:"flex flex-col space-y-1.5 pt-10",children:[e.jsx("input",{type:"text",value:i,onChange:s=>p(s.target.value),className:"text-2xl outline-none border-b-2 border-black text-blue-600 font-bold text-center",placeholder:"First Name"}),e.jsx("input",{type:"text",value:n,onChange:s=>f(s.target.value),className:"text-2xl outline-none border-b-2 border-black text-blue-600 font-bold text-center",placeholder:"Last Name"}),e.jsx("input",{className:"text-xl text-center outline-none border-b-2",type:"text",value:c,onChange:s=>b(s.target.value),placeholder:"Phone Number"})]}),e.jsx("p",{className:"pt-3 pb-8 text-gray-600",children:u})]}):e.jsxs("div",{children:[e.jsx("div",{className:"flex justify-center",children:e.jsx("img",{src:m,alt:"",height:200,width:200})}),e.jsxs("span",{className:"flex flex-col items-center space-y-1.5 pt-10",children:[e.jsxs("p",{className:"text-3xl text-blue-600 font-bold",children:[i," ",n]}),e.jsx("p",{className:"text-xl",children:c})]}),e.jsx("p",{className:"pt-3 pb-8 text-gray-600 text-center",children:u})]}),e.jsx("button",{onClick:N,className:"px-4 py-1 border border-blue-500 text-blue-500 rounded-xl cursor-pointer",children:o?"Submit Changes":"Edit"})]}),e.jsx("button",{onClick:g,className:"hover:bg-blue-500 hover:text-white bg-white text-blue-500 px-7 py-4 border border-blue-500 rounded-xl cursor-pointer",children:"LOGOUT"})]})};export{k as U};
+import { a as l, s as j, o as e } from './chunk-DQRVZFIR-D7VV7TLo.js';
+import { L as m } from './logo-lY71twTc.js';
+import { u as y, b as v } from './auth-B3Ozg4Wo.js';
+import { y as a } from './index-CKk8P0yu.js';
+import { u as w } from './authStore-DGrP8jNA.js';
+const k = () => {
+  l.useEffect(() => {
+    document.title = 'Dashboard';
+  }, []);
+  const h = j(),
+    { fetchUser: d, user: t } = w(),
+    [o, x] = l.useState(!1),
+    [i, p] = l.useState((t == null ? void 0 : t.firstName) ?? ''),
+    [n, f] = l.useState((t == null ? void 0 : t.lastName) ?? ''),
+    [c, b] = l.useState((t == null ? void 0 : t.phone) ?? ''),
+    [S, r] = l.useState(!1),
+    u = (t == null ? void 0 : t.email) ?? '',
+    g = async () => {
+      r(!0);
+      try {
+        await v(),
+          await d(),
+          a.dismiss(),
+          a.success('User successfully logged out'),
+          h('/login', { replace: !0 });
+      } catch (s) {
+        a.dismiss(), a.error(s.message || 'Something went wrong');
+      } finally {
+        r(!1);
+      }
+    },
+    N = async () => {
+      if (o) {
+        r(!0);
+        try {
+          await y({ firstName: i, lastName: n, phone: c }),
+            await d(),
+            a.dismiss(),
+            a.success('Profile updated successfully'),
+            x(!1);
+        } catch (s) {
+          a.dismiss(), a.error(s.message || 'Failed to update profile');
+        } finally {
+          r(!1);
+        }
+      } else x(!0);
+    };
+  return e.jsxs('div', {
+    className:
+      'bg-gradient-to-tl from-indigo-700 to-purple-500 h-[100vh] flex flex-col justify-center items-center gap-5',
+    children: [
+      e.jsxs('div', {
+        className: 'bg-white w-[70%] flex flex-col items-center justify-center rounded-xl h-[70%] ',
+        children: [
+          o
+            ? e.jsxs('div', {
+                className: 'flex flex-col items-center justify-center',
+                children: [
+                  e.jsx('div', {
+                    className: 'flex',
+                    children: e.jsx('img', { src: m, alt: '', height: 200, width: 200 }),
+                  }),
+                  e.jsxs('span', {
+                    className: 'flex flex-col space-y-1.5 pt-10',
+                    children: [
+                      e.jsx('input', {
+                        type: 'text',
+                        value: i,
+                        onChange: (s) => p(s.target.value),
+                        className:
+                          'text-2xl outline-none border-b-2 border-black text-blue-600 font-bold text-center',
+                        placeholder: 'First Name',
+                      }),
+                      e.jsx('input', {
+                        type: 'text',
+                        value: n,
+                        onChange: (s) => f(s.target.value),
+                        className:
+                          'text-2xl outline-none border-b-2 border-black text-blue-600 font-bold text-center',
+                        placeholder: 'Last Name',
+                      }),
+                      e.jsx('input', {
+                        className: 'text-xl text-center outline-none border-b-2',
+                        type: 'text',
+                        value: c,
+                        onChange: (s) => b(s.target.value),
+                        placeholder: 'Phone Number',
+                      }),
+                    ],
+                  }),
+                  e.jsx('p', { className: 'pt-3 pb-8 text-gray-600', children: u }),
+                ],
+              })
+            : e.jsxs('div', {
+                children: [
+                  e.jsx('div', {
+                    className: 'flex justify-center',
+                    children: e.jsx('img', { src: m, alt: '', height: 200, width: 200 }),
+                  }),
+                  e.jsxs('span', {
+                    className: 'flex flex-col items-center space-y-1.5 pt-10',
+                    children: [
+                      e.jsxs('p', {
+                        className: 'text-3xl text-blue-600 font-bold',
+                        children: [i, ' ', n],
+                      }),
+                      e.jsx('p', { className: 'text-xl', children: c }),
+                    ],
+                  }),
+                  e.jsx('p', { className: 'pt-3 pb-8 text-gray-600 text-center', children: u }),
+                ],
+              }),
+          e.jsx('button', {
+            onClick: N,
+            className: 'px-4 py-1 border border-blue-500 text-blue-500 rounded-xl cursor-pointer',
+            children: o ? 'Submit Changes' : 'Edit',
+          }),
+        ],
+      }),
+      e.jsx('button', {
+        onClick: g,
+        className:
+          'hover:bg-blue-500 hover:text-white bg-white text-blue-500 px-7 py-4 border border-blue-500 rounded-xl cursor-pointer',
+        children: 'LOGOUT',
+      }),
+    ],
+  });
+};
+export { k as U };

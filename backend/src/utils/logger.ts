@@ -22,11 +22,7 @@ const customLevels = {
 const logger = createLogger({
   levels: customLevels,
   level: 'http', // set minimum log level
-  format: combine(
-    timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    errors({ stack: true }),
-    logFormat
-  ),
+  format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), errors({ stack: true }), logFormat),
   transports: [],
   exceptionHandlers: [new transports.File({ filename: 'logs/exceptions.log' })],
 });
@@ -40,12 +36,8 @@ if (process.env.NODE_ENV !== 'production') {
   );
 } else {
   // File logging in production
-  logger.add(
-    new transports.File({ filename: path.join('logs', 'error.log'), level: 'error' })
-  );
-  logger.add(
-    new transports.File({ filename: path.join('logs', 'combined.log') })
-  );
+  logger.add(new transports.File({ filename: path.join('logs', 'error.log'), level: 'error' }));
+  logger.add(new transports.File({ filename: path.join('logs', 'combined.log') }));
 }
 
 export default logger;
