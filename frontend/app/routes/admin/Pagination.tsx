@@ -18,7 +18,7 @@ const Pagination = ({
   fetchProducts,
 }: PaginationProps) => {
   return (
-    <div className="flex justify-between items-center gap-4 mt-6">
+    <div className="flex justify-between items-center gap-4 my-6 pb-10">
       <p className="text-sm text-gray-600">
         Showing <strong>{itemsPerPage}</strong> of <strong>{total}</strong> {itemName}
       </p>

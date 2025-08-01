@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alimama from 'public/logo2.png';
 import { ShoppingCart } from 'lucide-react';
 import { useAuthStore } from '~/store/authStore';
@@ -6,17 +6,23 @@ import type { IProduct } from '~/types';
 import { useNavigate } from 'react-router';
 import { logout } from '~/api/auth';
 import { toast } from 'react-toastify';
+import { useCartStore } from '~/store/cartStore';
 
 type NavbarProps = {
-  cart: IProduct[];
+  cart?: IProduct[];
 };
 const Navbar: React.FC<NavbarProps> = ({ cart }) => {
   const { user, fetchUser } = useAuthStore();
+  const { fetchCart, items } = useCartStore();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
   const openCart = () => {
-    navigate('/shop/cart');
+    navigate('/cart');
   };
 
   const handleLogout = async () => {
@@ -80,9 +86,9 @@ const Navbar: React.FC<NavbarProps> = ({ cart }) => {
         <div className="cursor-pointer relative flex gap-3 hover:text-amber-500" onClick={openCart}>
           <span>
             <ShoppingCart />
-            {cart.length > 0 && (
+            {items.length > 0 && (
               <span className="bg-red-500 rounded-full text-[8px] px-1 absolute text-white -top-1 left-5">
-                {cart.length}
+                {items.length}
               </span>
             )}
           </span>

@@ -1,0 +1,1 @@
+import{j as r,N as a}from"./chunk-DQRVZFIR-iiQLzre3.js";import{u as i}from"./authStore-Bl6YCSMu.js";import{L as n}from"./Loader-DrVFdCe6.js";function p({children:t}){const{user:o,loading:e}=i();return e?r.jsx(n,{}):(o==null?void 0:o.role)==="admin"?t:r.jsx(a,{to:"/login",replace:!0})}export{p as A};

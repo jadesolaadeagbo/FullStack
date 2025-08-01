@@ -1,9 +1,10 @@
-// npx ts-node src/utils/seed.ts to run 
+// npx ts-node src/utils/seed.ts to run
 import mongoose from 'mongoose';
 import { faker } from '@faker-js/faker';
 import { Store } from '../models/store';
 import { Product } from '../models/product';
 import dotenv from 'dotenv';
+import axios from 'axios';
 
 dotenv.config();
 
@@ -17,6 +18,8 @@ const seedDatabase = async () => {
     await Store.deleteMany({});
     await Product.deleteMany({});
 
+    const { data: products } = await axios.get('https://fakestoreapi.com/products');
+
     for (let i = 0; i < 10; i++) {
       const store = new Store({
         name: faker.company.name(),
@@ -29,14 +32,16 @@ const seedDatabase = async () => {
 
       const productIds: mongoose.Types.ObjectId[] = [];
 
-      for (let j = 0; j < 5; j++) {
+      for (let j = 0; j < 20; j++) {
+        const p = products[Math.floor(Math.random() * products.length)];
+
         const product = new Product({
           storeId: store._id,
-          name: faker.commerce.productName(),
-          description: faker.commerce.productDescription(),
-          price: parseFloat(faker.commerce.price({ min: 10, max: 100 })),
-          stock: faker.number.int({ min: 1, max: 100 }),
-          productImage: faker.image.url(),
+          name: `${p.title} - ${faker.string.alpha(4).toUpperCase()}`,
+          description: p.description,
+          price: p.price,
+          stock: Math.floor(Math.random() * 20) + 1,
+          productImage: p.image,
         });
 
         await product.save();

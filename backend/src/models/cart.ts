@@ -31,8 +31,7 @@ const cartSchema = new Schema<ICart>(
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     items: {
       type: [cartItemSchema],
-      required: true
-      // validate: (v: ICartItem[]) => v.length > 0,
+      required: true,
     },
     total: { type: Number, required: true, min: 0 },
     isActive: { type: Boolean, default: true },

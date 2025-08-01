@@ -1,131 +1,151 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { X } from 'lucide-react';
-
-interface CartItem {
-  id: number;
-  title: string;
-  price: number;
-  quantity: number;
-}
-
-const initialCart: CartItem[] = [
-  {
-    id: 1,
-    title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
-    price: 109.95,
-    quantity: 1,
-  },
-  { id: 2, title: 'Mens Casual Premium Slim Fit T-Shirts', price: 22.3, quantity: 1 },
-];
+import Navbar from './components/Navbar';
+import { Minus, Plus, Trash2, ChevronLeft } from 'lucide-react';
+import { useCartStore } from '~/store/cartStore';
+import Loader from '~/components/Loader';
+import { toast } from 'react-toastify';
 
 export default function ViewCart() {
-  const [cart, setCart] = useState<CartItem[]>(initialCart);
   const navigate = useNavigate();
+  const { fetchCart, items, loading, updateQuantity, removeItem } = useCartStore();
+  const [loadingItems, setLoadingItems] = useState<{ [id: string]: boolean }>({});
+
 
   useEffect(() => {
     document.title = 'View Cart';
-  });
+  }, []);
 
-  const increment = (id: number) => {
-    setCart((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity: item.quantity + 1 } : item))
-    );
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  useEffect(() => {
+    console.log('CART ITEMS:', items);
+  }, [items]);
+
+  const increment = async (id: string, quantity: number) => {
+setLoadingItems((prev) => ({ ...prev, [id]: true }));
+    try {
+      await updateQuantity(id, quantity + 1);
+      toast.success("Cart updated")
+    } catch (error: any) {
+      toast.dismiss();
+      toast.error(error.message || 'Failed to update cart');
+    } finally {
+      setLoadingItems((prev) => ({ ...prev, [id]: false }));
+    }
   };
 
-  const decrement = (id: number) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
-      )
-    );
+  const decrement = async (id: string, quantity: number) => {
+    if (quantity > 1) {
+      setLoadingItems((prev) => ({ ...prev, [id]: true }));
+      try {
+        await updateQuantity(id, quantity - 1);
+        toast.success("Cart updated")
+      } catch (error: any) {
+        toast.dismiss();
+        toast.error(error.message || 'Failed to update cart');
+      } finally {
+        setLoadingItems((prev) => ({ ...prev, [id]: false }));
+      }
+    }
   };
 
-  const removeItem = (id: number) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
+  const total = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0).toFixed(2);
+  const itemCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
-  const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  if (loading) return <Loader />;
+
+
 
   return (
     <>
-      <div className="p-20">
-        <h1 className="text-2xl font-bold mb-4">Cart</h1>
+    <Navbar />
+      {items.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <>
+          <div className=" p-6 bg-gray-100 h-[90vh]">
+            {/* Left Cart Items */}
+            <button className='flex pl-36 hover:text-blue-400 cursor-pointer'>
+            <ChevronLeft/>
+            <p className='pb-5' onClick={() => navigate(-1)}>Go back</p>
+            </button>
+          <div className='flex flex-col md:flex-row justify-center  gap-4'>
 
-        <div className="bg-white shadow rounded mb-6 mt-10">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b">
-                <th className="p-4 font-semibold">Product</th>
-                <th className="p-4 font-semibold">Price</th>
-                <th className="p-4 font-semibold">Quantity</th>
-                <th className="p-4 font-semibold">Total</th>
-                <th className="p-4"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map((item) => (
-                <tr key={item.id} className="border-b items-center">
-                  <td className="p-4">${item.title}</td>
-                  <td className="p-4">${item.price.toFixed(2)}</td>
-                  <td className="p-4">
-                    <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => decrement(item.id)}
-                        className="text-blue-500 cursor-pointer"
-                      >
-                        -
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button
-                        onClick={() => increment(item.id)}
-                        className="text-blue-500 cursor-pointer"
-                      >
-                        +
-                      </button>
+          
+            <div className="bg-white rounded-lg shadow p-6 flex-1 max-w-3xl">
+            <h2 className="text-xl font-semibold mb-4">Cart ({items.length})</h2>
+              {items.map((item) => (
+                <div
+                  key={item._id}
+                  className="border-b pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0"
+                >
+                  <div className="flex gap-4">
+                    <img src={item.product.productImage} alt={item.product.name} className="w-20 h-20 object-contain" />
+                    <div className="flex-1">
+                      <h3 className="font-medium text-gray-900">{item.product.name}</h3>
+                      <div className="mt-3 flex items-center justify-between">
+                        <div className="flex gap-2 items-center">
+                          <span className="text-lg font-semibold text-gray-900">
+                            ${item.product.price}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                        <button
+  disabled={loadingItems[item.product._id]}
+  className="bg-blue-800 text-white p-1.5 rounded shadow disabled:bg-gray-400 cursor-pointer"
+  onClick={() => decrement(item.product._id, item.quantity)}
+>
+  <Minus size={16} />
+</button>
+
+<span className="px-2">{item.quantity}</span>
+
+<button
+  disabled={loadingItems[item.product._id]}
+  className="bg-blue-800 text-white p-1.5 rounded shadow disabled:bg-gray-400 cursor-pointer"
+  onClick={() => increment(item.product._id, item.quantity)}
+>
+  <Plus size={16} />
+</button>
+                        </div>
+                      </div>
                     </div>
-                  </td>
-                  <td className="p-4">${(item.price * item.quantity).toFixed(2)}</td>
-                  <td className="p-4">
-                    <button
-                      onClick={() => removeItem(item.id)}
-                      className="text-white bg-gray-300 rounded-2xl cursor-pointer"
-                    >
-                      <X size={18} />
-                    </button>
-                  </td>
-                </tr>
+                  </div>
+                  <button
+                    className="flex items-center gap-1 text-blue-700 mt-3 text-sm cursor-pointer"
+                    onClick={() => removeItem(item.product._id)}
+                  >
+                    <Trash2 size={16} />
+                    Remove
+                  </button>
+                </div>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </div>
 
-        <div className="bg-white shadow rounded p-4 mb-6">
-          <h2 className="text-lg font-semibold mb-2">Summary</h2>
-          <p className="text-lg font-bold">
-            ${total},{' '}
-            <span className="font-normal text-gray-600">
-              {itemCount} item{itemCount > 1 ? 's' : ''}
-            </span>
-          </p>
-        </div>
+            <div className="bg-white rounded-lg shadow p-6 w-full md:w-80 h-fit">
+              <h2 className="text-lg font-semibold mb-4">CART SUMMARY</h2>
+              <div className="flex justify-between text-gray-700 font-medium mb-4">
+                <span>Total</span>
+                <span>${total}</span>
+              </div>
+              <div className="flex justify-between text-gray-700 font-medium mb-4">
+                <span>Number of items</span>
+                <span>{items.length}</span>
+              </div>
+              <button className="bg-blue-700 text-white w-full py-2 rounded shadow font-semibold hover:bg-blue-700 transition cursor-pointer" onClick={() => alert('Proceeding to checkout...')}>
+                Checkout (${total})
+              </button>
+            </div>
+            {/* <button>Clear Cart</button> */}
+            </div>
+          </div>
+        </>
+      )}
 
-        <div className="flex justify-between mt-10">
-          <button
-            onClick={() => navigate(-1)}
-            className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 cursor-pointer"
-          >
-            Go Back
-          </button>
-          <button
-            onClick={() => alert('Proceeding to checkout...')}
-            className="bg-black text-white px-4 py-2 rounded hover:bg-gray-900 cursor-pointer"
-          >
-            Proceed to checkout
-          </button>
-        </div>
-      </div>
     </>
   );
 }

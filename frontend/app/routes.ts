@@ -10,7 +10,7 @@ export default [
   route('userProfile', 'routes/authentication/userProfile/ProtectedUserProfile.tsx'),
   route('auth/loading', 'routes/authentication/OAuthLoading.tsx'),
   route('shop', 'routes/shop/index.tsx'),
-  route('shop/cart', 'routes/shop/ViewCart.tsx'),
+  route('/cart', 'routes/shop/ViewCart.tsx'),
 
   layout('routes/admin/Sidebar.tsx', [
     route('dashboard', 'routes/admin/Dashboard.tsx'),

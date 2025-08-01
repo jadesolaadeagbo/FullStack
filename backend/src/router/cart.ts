@@ -14,6 +14,6 @@ router.post('/add', isAuthenticated, addToCart);
 router.put('/update', isAuthenticated, updateCartItem);
 router.delete('/remove/:productId', isAuthenticated, removeCartItem);
 router.delete('/clear', isAuthenticated, clearCart);
-router.delete('/checkout', isAuthenticated, checkoutCart);
+router.post('/checkout', isAuthenticated, checkoutCart);
 
 export default router;

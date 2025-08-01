@@ -109,3 +109,25 @@ export interface UpdateShopData {
   description?: string;
   location?: string;
 }
+
+export interface CreateCartData {
+  productId: string;
+  quantity: number;
+}
+export interface UpdateCartData {
+  productId: string;
+  quantity: number;
+}
+
+export interface CartItem {
+  _id: string;
+  product: IProduct;
+  quantity: number;
+}
+
+export interface CartResponse {
+  _id: string;
+  items: IProduct[];
+  total: number;
+  isActive: boolean;
+}

@@ -32,7 +32,6 @@ export const useShopStore = create<ShopStore>((set, get) => ({
     set({ loading: true });
     try {
       const { shops, total, totalPages } = await getAllShops(page);
-      console.log('shops returned', shops);
       set({ shops, total, page, totalPages });
     } catch (error) {
       console.error('Failed to fetch shops:', error);

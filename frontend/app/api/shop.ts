@@ -1,6 +1,4 @@
 import type {
-  IProduct,
-  IStore,
   CreateShopData,
   CreateProductData,
   StoreResponse,
@@ -60,7 +58,7 @@ export const getAllShops = async (page: number, limit: number = 10): Promise<Sto
 
 export const getAllProducts = async (
   page: number,
-  limit: number = 10
+  limit: number = 20
 ): Promise<ProductResponse> => {
   const response = await fetch(`${API_URL}/api/products?page=${page}&limit=${limit}`, {
     method: 'GET',

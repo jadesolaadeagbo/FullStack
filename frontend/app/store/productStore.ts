@@ -10,7 +10,7 @@ interface ProductStore {
   page: number;
   total: number;
   totalPages: number;
-  fetchProducts: (page?: number) => Promise<void>;
+  fetchProducts: (page?: number, limit?: number) => Promise<void>;
   createProduct: (payload: CreateProductData) => Promise<void>;
 }
 
@@ -21,10 +21,10 @@ export const useProductStore = create<ProductStore>((set) => ({
   total: 0,
   totalPages: 1,
 
-  fetchProducts: async (page = 1) => {
+  fetchProducts: async (page = 1, limit) => {
     set({ loading: true });
     try {
-      const { products, total, totalPages } = await getAllProducts(page);
+      const { products, total, totalPages } = await getAllProducts(page, limit);
       set({ products, total, page, totalPages });
     } catch (error) {
       console.error('Failed to fetch products:', error);

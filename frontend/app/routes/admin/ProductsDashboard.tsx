@@ -19,7 +19,7 @@ const ProductsDashboard = () => {
   const itemsPerPage = products.length;
 
   useEffect(() => {
-    fetchProducts();
+    fetchProducts(1, 10);
   }, []);
 
   return (

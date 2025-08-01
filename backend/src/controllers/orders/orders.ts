@@ -32,7 +32,10 @@ export const checkoutCart = async (req: Request, res: Response) => {
 
     if (!cart || cart.items.length === 0) {
       await session.abortTransaction();
-      res.status(400).json({ message: 'Cart is empty or does not exist' });
+      res.status(400).json({
+        status: '400',
+        message: 'Cart is empty!',
+      });
       return;
     }
 
@@ -41,6 +44,7 @@ export const checkoutCart = async (req: Request, res: Response) => {
       if (product.stock < line.quantity) {
         await session.abortTransaction();
         res.status(400).json({
+          status: '400',
           message: `Insufficient stock for "${product.name}". Available: ${product.stock}`,
         });
         return;
@@ -76,12 +80,17 @@ export const checkoutCart = async (req: Request, res: Response) => {
     session.endSession();
 
     res.status(201).json({
+      status: '201',
       message: 'Checkout successful',
       order: orderDoc[0],
     });
   } catch (err) {
     await session.abortTransaction();
     session.endSession();
-    res.status(500).json({ message: 'Checkout failed', error: err });
+    res.status(500).json({
+      status: '500',
+      message: 'Checkout failed',
+      error: err,
+    });
   }
 };

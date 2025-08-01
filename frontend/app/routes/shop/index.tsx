@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Products from './components/Products';
-import Stores from './components/Shops';
 import type { IProduct } from '~/types';
 
 const Index = () => {
@@ -17,7 +16,6 @@ const Index = () => {
       <Navbar cart={cart} />
       <Hero />
       <Products cart={cart} setCart={setCart} />
-      <Stores />
     </div>
   );
 };

@@ -42,8 +42,8 @@ const Sidebar = () => {
 
   return (
     <AdminRoute>
-      <div className="flex gap-10 h-screen fixed">
-        <aside className="w-64 bg-gray-900 text-white p-4">
+      <div className="flex gap-10 h-[100vh] justify-between">
+        <aside className="w-64 bg-gray-900 text-white p-4 fixed  h-[100vh]">
           <h2 className="text-2xl font-bold mb-6">ecommerce</h2>
           <div className="flex flex-col ">
             <nav className="space-y-2">
@@ -107,7 +107,7 @@ const Sidebar = () => {
             </button>
           </div>
         </aside>
-        <div className="pt-10">
+        <div className="pt-10 ml-76 w-full">
           <Outlet />
         </div>
       </div>
